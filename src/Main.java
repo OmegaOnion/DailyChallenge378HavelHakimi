@@ -18,12 +18,22 @@ Your challenge for today is, given a sequence of answers to the question "how ma
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class Main {
 
     public static void main(String[] args){
-        ArrayList<Integer> t = new ArrayList<Integer>(Arrays.asList(5, 3, 0, 2, 6, 2, 0, 7, 2, 5));
-        System.out.println(warmup1(t));
+        ArrayList<Integer> wt1 = new ArrayList<Integer>(Arrays.asList(5, 3, 0, 2, 6, 2, 0, 7, 2, 5));
+        System.out.println(warmup1(wt1));
+        ArrayList<Integer> wt2 = new ArrayList<Integer>(Arrays.asList(4, 0, 0, 1, 3));
+        System.out.println(warmup1(wt2));
+        ArrayList<Integer> wt3 = new ArrayList<Integer>(Arrays.asList(1,2,3));
+        System.out.println(warmup1(wt3));
+        ArrayList<Integer> wt4 = new ArrayList<Integer>(Arrays.asList(0,0,0));
+        System.out.println(warmup1(wt4));
+        ArrayList<Integer> wt5 = new ArrayList<Integer>(Arrays.asList());
+        System.out.println(warmup1(wt5));
+
 
     }
 
@@ -34,9 +44,12 @@ public class Main {
      */
     public static ArrayList<Integer> warmup1(ArrayList<Integer> sequence){
 
-        for(int i=0;i<sequence.size();i++){
-            if (sequence.get(i)==0){
-                sequence.remove(i);
+
+        Iterator itr = sequence.iterator();
+        while(itr.hasNext()){
+            int x = (int) itr.next();
+            if(x==0){
+                itr.remove();
             }
         }
         return sequence;
