@@ -19,7 +19,6 @@ Your challenge for today is, given a sequence of answers to the question "how ma
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
 
 public class Main {
 
@@ -109,15 +108,7 @@ public class Main {
      * @return arraylist without any 0s
      */
     private static ArrayList<Integer> warmup1(ArrayList<Integer> sequence){
-
-
-        Iterator itr = sequence.iterator();
-        while(itr.hasNext()){
-            int x = (int) itr.next();
-            if(x==0){
-                itr.remove();
-            }
-        }
+        sequence.removeIf(i -> i==0);
         return sequence;
     }
 
@@ -127,8 +118,7 @@ public class Main {
      * @return arraylist in reverse sorted
      */
     private static ArrayList<Integer> warmup2(ArrayList<Integer> sequence){
-        Collections.sort(sequence);
-        Collections.reverse(sequence);
+        sequence.sort((a, b) -> b - a);
         return sequence;
     }
 
@@ -163,7 +153,6 @@ public class Main {
      * @return true if n > size of arraylist, false otherwise
      */
     private static boolean warmup3(int n, ArrayList<Integer> sequence){
-
         return n > sequence.size();
     }
 
@@ -199,8 +188,7 @@ public class Main {
         //3. Sort the sequence in descending order
         sequence=warmup2(sequence);
         //4. Remove the first answer (largest) from sequence and call it n
-        int n = sequence.get(0);
-        sequence.remove(0);
+        int n = sequence.remove(0);
         //5. If n is greater than the length of new sequence return false
         if(warmup3(n,sequence)){
             return false;
